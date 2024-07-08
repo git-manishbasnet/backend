@@ -1,0 +1,9 @@
+semantic version(semVer)
+major.minor.patch(1.2.3)
+
+package.json=>describes our project
+package.lock.json=>describes the packages(npm)
+                     used in the project
+
+ arrow function is passed as an 
+ argument in a method it is called callback function
