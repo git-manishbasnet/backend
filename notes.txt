@@ -7,3 +7,16 @@ package.lock.json=>describes the packages(npm)
 
  arrow function is passed as an 
  argument in a method it is called callback function
+
+camelCase
+manishbasnet--manishbasnet
+
+
+snake_case
+manishbasnet--manish_basnet
+i love Nepal -- i_love_nepal
+
+Pascal Case
+Manishbasnet--Manishbasnet
+
+mongodb+srv://manish:manish123456@manish.mostu3z.mongodb.net/?retryWrites=true&w=majority&appName=Manish
