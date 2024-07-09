@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/path/to/your/css/styles.css" />
+    <title>eCommerce Site</title>
+    <style>
+      /* Reset some default styles */
+      body,
+      h2,
+      p,
+      ul,
+      li,
+      nav {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Basic body styling */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+
+      /* Navbar styling */
+      nav {
+        background: #333;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+      }
+
+      nav ul {
+        list-style: none;
+      }
+
+      nav ul li {
+        display: inline;
+        margin: 0 15px;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+
+      /* Product card styling */
+      .product-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-width: 300px;
+        margin: 20px auto;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .product-card img {
+        max-width: 100%;
+        height: auto;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 15px;
+      }
+
+      .product-card h2 {
+        font-size: 1.5em;
+        margin: 15px 0;
+      }
+
+      .product-card p {
+        color: #555;
+      }
+
+      .product-card .price {
+        font-size: 1.2em;
+        color: #333;
+        margin: 15px 0;
+      }
+
+      .product-card button {
+        background: #28a745;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 1em;
+      }
+
+      .product-card button:hover {
+        background: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/cart">Cart</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <div>
+        <% blogs.forEach((blog) => { %>
+        <div class="product-card">
+          <img src="" alt="" />
+          <h2><%-blog.title%></h2>
+          <p><%-blog.description%></p>
+
+          <button>View</button>
+        </div>
+        <% }) %>
+      </div>
+    </main>
+  </body>
+</html>
