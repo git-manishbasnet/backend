@@ -1,6 +1,8 @@
 const express = require("express");
 const connectToDb = require("./database/databaseConnect");
-const Blog = require("./views/blogmodel");
+const Blog = require("./model/blogmodel");
+const User = require("./model/usermodel");
+const bcrypt = require("bcrypt");
 
 const app = express();
 
@@ -29,8 +31,38 @@ app.get("/contact", (req, res) => {
 app.get("/createblog", (req, res) => {
   res.render("createBlog.ejs");
 });
+app.get("/showblog/:id", async (req, res) => {
+  const id = req.params.id;
+  const blog = await Blog.findById(id);
+  console.log(blog);
+  res.render("showblog.ejs", { objblog: blog });
+});
+app.get("/deleteblog/:id", async (req, res) => {
+  const id = req.params.id;
+  await Blog.findByIdAndDelete(id);
 
-app.get("/", async (req, res) => {
+  res.redirect("/blog");
+});
+
+app.get("/editblog/:id", async (req, res) => {
+  const id = req.params.id;
+  const blog = await Blog.findById(id);
+
+  res.render("editblog.ejs", { objblog: blog });
+});
+
+app.post("/editblog/:id", async (req, res) => {
+  const id = req.params.id;
+  const { title, subtitle, description } = req.body;
+  await Blog.findByIdAndUpdate(id, {
+    title: title,
+    subtitle: subtitle,
+    description: description,
+  });
+  res.redirect("/blog");
+});
+
+app.get("/blog", async (req, res) => {
   const blogs = await Blog.find();
 
   if (blogs.length === 0) {
@@ -44,8 +76,10 @@ app.post("/createblog", upload.single("image"), async (req, res) => {
   // const title=req.body.title
   // const subtitle=req.body.subtitle
   // const description=req.body.description
-  const { title, subtitle, description } = req.body;
+  const { title, subtitle, description, image } = req.body;
   console.log(title, subtitle, description);
+  // const file = req.file;
+  // console.log(req.file.filename);
   const fileName = req.file.filename;
   await Blog.create({
     title: title,
@@ -57,6 +91,36 @@ app.post("/createblog", upload.single("image"), async (req, res) => {
   res.send("Blog successfully created");
 });
 
+app.get("/loginpage", (req, res) => {
+  res.render("loginpage.ejs");
+});
+
+app.post("/loginpage", async (req, res) => {
+  const { email, password } = req.body;
+  const userData = await User.findOne({ email: email });
+  if (userData) {
+    if (bcrypt.compareSync(password, userData.password)) {
+      res.redirect("/blog");
+    } else {
+      res.send("Password is incorrect");
+    }
+  } else {
+    res.send("User not found");
+  }
+});
+
+app.get("/signuppage", (req, res) => {
+  res.render("signuppage.ejs");
+});
+app.post("/signuppage", async (req, res) => {
+  const { username, email, password } = req.body;
+  await User.create({
+    username: username,
+    email: email,
+    password: bcrypt.hashSync(password, 10),
+  });
+  res.redirect("/loginpage");
+});
 app.use(express.static("./storage"));
 
 app.listen(3000, () => {

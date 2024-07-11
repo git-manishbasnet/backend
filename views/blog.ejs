@@ -133,7 +133,8 @@
           <img src="<%= blog.image %>" alt="<%= blog.title %> Image" />
           <h2><%- blog.title %></h2>
           <p><%- blog.subtitle %></p>
-          <button>View</button>
+          
+           <a href="/showblog/<%- blog._id %>"> <button> see more</button></a>
         </div>
         <% }) %>
       </div>

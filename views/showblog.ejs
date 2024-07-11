@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+      }
+      main {
+        padding: 20px;
+      }
+      .blog-post {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .blog-post img {
+        width: 100%;
+        height: auto;
+      }
+      h2,
+      h3 {
+        background-color: bisque;
+        color: #333;
+      }
+      p {
+        background-color: #007bff;
+        line-height: 1.6;
+      }
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #007bff;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .delete {
+        background-color: red;
+        color: white;
+
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .edit {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Blog Details</h1>
+    </header>
+    <main>
+      <div class="blog-post">
+        <h2><%-objblog.title%></h2>
+        <br />
+        <h3><%-objblog.subtitle%></h3>
+        <br />
+        <img
+          src="/<%- objblog.image%>"
+          alt="
+   
+      "
+        />
+        <p><%-objblog.description%></p>
+      </div>
+      <a href="/">see more" ></a>
+      <br />
+      <br />
+      <a href="/editblog/<%-objblog._id%>"
+        ><button class="edit">Edit</button></a
+      >
+
+      <a href="/deleteblog/<%-objblog._id%>">
+        <button class="delete">Delete</button></a
+      >
+      <br />
+      <a href="/blog">back to home</a>
+    </main>
+  </body>
+</html>
